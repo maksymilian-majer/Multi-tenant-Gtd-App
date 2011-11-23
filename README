@@ -1,0 +1,16 @@
+Wymagania:
+
+Visual Studio 2010 Sp1
+MS SQL Server 2008
+
+Instrukcje:
+
+1. Odpaliæ src\Scripts.sql
+
+2. Dodaæ nastêpuj¹ce linijki do c:\%windir%\System32\drivers\etc\hosts (przyk³adowy plik w src\hosts):
+127.0.0.1		tenant1.localhost
+127.0.0.1		tenant2.localhost
+
+3. Zmieniæ Conntection Strings w Web.config (host SQL Servera)
+4. Odpaliæ i wejœæ z przegl¹darki w URL:
+http://tenant1.localhost:port/ (port nadany przez Cassini)

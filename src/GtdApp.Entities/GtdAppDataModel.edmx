@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="GtdAppModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="GtdAppModelStoreContainer">
+          <EntitySet Name="Contexts" EntityType="GtdAppModel.Store.Contexts" Schema="tenancy" />
+          <EntitySet Name="Todos" EntityType="GtdAppModel.Store.Todos" Schema="tenancy" />
+        </EntityContainer>
+        <EntityType Name="Contexts">
+          <Key>
+            <PropertyRef Name="ContextId" />
+          </Key>
+          <Property Name="ContextId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Todos">
+          <Key>
+            <PropertyRef Name="TodoId" />
+          </Key>
+          <Property Name="TodoId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ContextId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="500" />
+          <Property Name="IsDone" Type="bit" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GtdAppModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="GtdAppDataContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Contexts" EntityType="GtdAppModel.Context" />
+          <EntitySet Name="Todos" EntityType="GtdAppModel.Todo" />
+          <AssociationSet Name="ContextTodo" Association="GtdAppModel.ContextTodo">
+            <End Role="Context" EntitySet="Contexts" />
+            <End Role="Todo" EntitySet="Todos" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Context">
+          <Key>
+            <PropertyRef Name="ContextId" />
+          </Key>
+          <Property Name="ContextId" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="500" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Todos" Relationship="GtdAppModel.ContextTodo" FromRole="Context" ToRole="Todo" />
+        </EntityType>
+        <EntityType Name="Todo">
+          <Key>
+            <PropertyRef Name="TodoId" />
+          </Key>
+          <Property Name="TodoId" Type="Guid" Nullable="false" />
+          <Property Name="ContextId" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="IsDone" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Context" Relationship="GtdAppModel.ContextTodo" FromRole="Todo" ToRole="Context" />
+        </EntityType>
+        <Association Name="ContextTodo">
+          <End Type="GtdAppModel.Context" Role="Context" Multiplicity="1" />
+          <End Type="GtdAppModel.Todo" Role="Todo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Context">
+              <PropertyRef Name="ContextId" />
+            </Principal>
+            <Dependent Role="Todo">
+              <PropertyRef Name="ContextId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GtdAppModelStoreContainer" CdmEntityContainer="GtdAppDataContext">
+          <EntitySetMapping Name="Contexts"><EntityTypeMapping TypeName="GtdAppModel.Context"><MappingFragment StoreEntitySet="Contexts">
+            <ScalarProperty Name="ContextId" ColumnName="ContextId" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Todos"><EntityTypeMapping TypeName="GtdAppModel.Todo"><MappingFragment StoreEntitySet="Todos">
+            <ScalarProperty Name="TodoId" ColumnName="TodoId" />
+            <ScalarProperty Name="ContextId" ColumnName="ContextId" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="IsDone" ColumnName="IsDone" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="GtdAppDataModel">
+        <EntityTypeShape EntityType="GtdAppModel.Context" Width="1.5" PointX="2" PointY="1.875" Height="1.59568359375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GtdAppModel.Todo" Width="1.5" PointX="4.875" PointY="1.625" Height="1.9802864583333339" IsExpanded="true" />
+        <AssociationConnector Association="GtdAppModel.ContextTodo">
+          <ConnectorPoint PointX="3.5" PointY="2.672841796875" />
+          <ConnectorPoint PointX="4.875" PointY="2.672841796875" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
