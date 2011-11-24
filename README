@@ -1,3 +1,4 @@
+################ POLSKA INSTRUKCJA ################
 Wymagania:
 
 Visual Studio 2010 Sp1
@@ -12,5 +13,31 @@ Instrukcje:
 127.0.0.1		tenant2.localhost
 
 3. Zmieniæ Conntection Strings w Web.config (host SQL Servera)
-4. Odpaliæ i wejœæ z przegl¹darki w URL:
+
+4. Skompilowaæ solucjê src\GrdApp.sln, odpaliæ i wejœæ z przegl¹darki w URL:
 http://tenant1.localhost:port/ (port nadany przez Cassini)
+
+5. Dodaæ trochê danych i sprawdziæ czy nie wyœwietlaj¹ siê pod adresem:
+http://tenant2.localhost:port/ (port nadany przez Cassini)
+
+################ ENGLISH INSTRUCTION ################
+Requirements:
+
+Visual Studio 2010 Sp1
+MS SQL Server 2008
+
+Instructions:
+
+1. Run src\Scripts.sql
+
+2. Add the following wines to our hosts located in c:\%windir%\System32\drivers\etc\hosts (you can see an example of this file in src\hosts):
+127.0.0.1		tenant1.localhost
+127.0.0.1		tenant2.localhost
+
+3. Change your Connection String in the Web.config file to point to your instance
+
+4. Compile the solution src\GtdApp.sln, run it and visit the following URL in your browser:
+http://tenant1.localhost:port/ (port assigned by Cassini)
+
+5. Add some data and check if they really don't appear at:
+http://tenant2.localhost:port/ (port nadany przez Cassini)
