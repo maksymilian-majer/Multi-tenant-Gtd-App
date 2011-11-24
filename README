@@ -6,18 +6,18 @@ MS SQL Server 2008
 
 Instrukcje:
 
-1. Odpaliæ src\Scripts.sql
+1. OdpaliÄ‡ src\Scripts.sql
 
-2. Dodaæ nastêpuj¹ce linijki do c:\%windir%\System32\drivers\etc\hosts (przyk³adowy plik w src\hosts):
+2. DodaÄ‡ nastÄ™pujÄ…ce linijki do c:\%windir%\System32\drivers\etc\hosts (przykÅ‚adowy plik w src\hosts):
 127.0.0.1		tenant1.localhost
 127.0.0.1		tenant2.localhost
 
-3. Zmieniæ Conntection Strings w Web.config (host SQL Servera)
+3. ZmieniÄ‡ Conntection Strings w Web.config (host SQL Servera)
 
-4. Skompilowaæ solucjê src\GrdApp.sln, odpaliæ i wejœæ z przegl¹darki w URL:
+4. SkompilowaÄ‡ solucjÄ™ src\GrdApp.sln, odpaliÄ‡ i wejÅ›Ä‡ z przeglÄ…darki w URL:
 http://tenant1.localhost:port/ (port nadany przez Cassini)
 
-5. Dodaæ trochê danych i sprawdziæ czy nie wyœwietlaj¹ siê pod adresem:
+5. DodaÄ‡ trochÄ™ danych i sprawdziÄ‡ czy nie wyÅ›wietlajÄ… siÄ™ pod adresem:
 http://tenant2.localhost:port/ (port nadany przez Cassini)
 
 ################ ENGLISH INSTRUCTION ################
@@ -40,4 +40,3 @@ Instructions:
 http://tenant1.localhost:port/ (port assigned by Cassini)
 
 5. Add some data and check if they really don't appear at:
-http://tenant2.localhost:port/ (port nadany przez Cassini)
